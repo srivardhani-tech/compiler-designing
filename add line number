@@ -1,0 +1,25 @@
+/* Program to add line numbers
+to a given file*/
+%{
+int line_number = 1; // initializing line number to 1
+%}
+
+
+
+%%
+{line} { printf("%10d %s", line_number++, yytext); }
+
+%%
+
+int yywrap(){}
+
+int main(int argc, char*argv[])
+{
+extern FILE *yyin; 
+
+yyin = fopen("testtest.c","r"); 
+
+yylex(); 
+
+return 0;
+}
